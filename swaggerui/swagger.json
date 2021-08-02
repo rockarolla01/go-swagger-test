@@ -1,0 +1,191 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "Documentation of the entity api",
+    "title": "entities",
+    "version": "1.0.0"
+  },
+  "host": "localhost:8082",
+  "basePath": "/api/v1/entity-service",
+  "paths": {
+    "/entities": {
+      "get": {
+        "description": "This api returns all entities",
+        "tags": [
+          "entities_tag"
+        ],
+        "operationId": "getAllEntities",
+        "responses": {
+          "200": {
+            "description": "testEntity",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/testEntity"
+              }
+            }
+          },
+          "500": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "description": "This api creates a new entity and returns it",
+        "tags": [
+          "entities_tag"
+        ],
+        "operationId": "createEntity",
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/testEntityRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "testEntity",
+            "schema": {
+              "$ref": "#/definitions/testEntity"
+            }
+          },
+          "500": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/entities/{id}": {
+      "get": {
+        "description": "This api returns an entity found by id",
+        "tags": [
+          "entities_tag"
+        ],
+        "operationId": "getEntityById",
+        "parameters": [
+          {
+            "type": "string",
+            "x-go-name": "Id",
+            "description": "Id of the entity 2",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "x-go-name": "SearchVal",
+            "description": "the value to search",
+            "name": "searchVal",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "testEntity",
+            "schema": {
+              "$ref": "#/definitions/testEntity"
+            }
+          },
+          "404": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "description": "This api returns an entity found by id",
+        "tags": [
+          "entities_tag"
+        ],
+        "operationId": "updateEntity",
+        "parameters": [
+          {
+            "type": "string",
+            "x-go-name": "Id",
+            "description": "Id of the entity 2",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "testEntity",
+            "schema": {
+              "$ref": "#/definitions/testEntity"
+            }
+          },
+          "404": {
+            "description": ""
+          },
+          "500": {
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "testEntity": {
+      "description": "TestResponse is the main model class used in this app",
+      "type": "object",
+      "properties": {
+        "echoNum": {
+          "type": "string",
+          "x-go-name": "EchoNum"
+        },
+        "echoValue": {
+          "type": "string",
+          "x-go-name": "EchoValue"
+        },
+        "pParam": {
+          "type": "string",
+          "x-go-name": "PParam"
+        },
+        "qParam": {
+          "type": "string",
+          "x-go-name": "QParam"
+        }
+      },
+      "x-go-name": "Entity",
+      "x-go-package": "example.com/swag-test/entity"
+    },
+    "testEntityRequest": {
+      "description": "TestRequest is the create/update body for the",
+      "type": "object",
+      "properties": {
+        "num": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "Num"
+        },
+        "value": {
+          "type": "string",
+          "x-go-name": "Value"
+        }
+      },
+      "x-go-name": "EntityRequest",
+      "x-go-package": "example.com/swag-test/entity"
+    }
+  },
+  "securityDefinitions": {
+    "basic": {
+      "type": "basic"
+    }
+  }
+}
