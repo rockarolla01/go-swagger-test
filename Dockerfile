@@ -1,5 +1,6 @@
 FROM golang:1.16-alpine
 
-COPY go.mod ./
-COPY go.sum ./
-RUN go mod download
+ADD go-swagger-test /bin/go-swagger-test
+ADD swaggerui /bin/swaggerui
+
+ENTRYPOINT /bin/go-swagger-test
